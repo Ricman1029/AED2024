@@ -1,13 +1,34 @@
-def fibonacci(numero):
-    if numero == 0:
-        return 0
-    if numero == 1:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def factorial(n):
+    if n == 1 or n == 0:
         return 1
-    
-    return fibonacci(numero - 1) + fibonacci(numero - 2)
 
+    uno_menos = n - 1
+    return n * factorial(uno_menos)
 
-numero = 1
-while numero > 0:
-    numero = int(input("Ingrese un numero: "))
-    print(f"El {numero}º de la serie es: {fibonacci(numero)}")
+print(factorial(5))
