@@ -1,3 +1,4 @@
 Proyectos/
 Clases/Desafios domingueros/Textual
-Clases/quini_utn/__pycache__/
+__pycache__/
+*.pyc
