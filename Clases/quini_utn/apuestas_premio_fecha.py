@@ -1,18 +1,7 @@
 from otras_funciones import formato_fecha, mostrar_titulo, obtener_numeros_ganadores, obtener_apuestas_del_dia
 from funciones_de_listas import (partir_cadena, orden_parcial, buscar_coincidencias,
-                                 ordenar_lista_esteroides, elementos_str_int, insertar_en_lista)
+                                 ordenar_lista_esteroides, insertar_en_lista)
 from grilla import grilla
-
-def crear_lista_de_apuestas(archivo):
-    apuestas = []
-    linea = archivo.readline()
-    while linea != "":
-        apuesta = partir_cadena(linea, ",\n", int)
-        apuesta = orden_parcial(apuesta, 1, len(apuesta))
-        apuestas.append(apuesta)
-        linea = archivo.readline()
-
-    return apuestas
 
 
 def crear_lista_ganadores_por_premio(premio, apuestas, numeros):

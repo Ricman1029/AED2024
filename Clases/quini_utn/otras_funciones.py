@@ -1,5 +1,4 @@
 import os
-from funciones_de_listas import insertar_en_lista
 
 
 def limpiar_pantalla():

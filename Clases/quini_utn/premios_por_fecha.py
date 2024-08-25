@@ -16,7 +16,7 @@ def obtener_datos_del_dia(apuestas, ganadores):
     primeros = segundos = terceros = 0
 
     for apuesta in apuestas:
-        aciertos = buscar_coincidencias(apuesta, ganadores)
+        aciertos = buscar_coincidencias(apuesta.numeros, ganadores)
         primeros, segundos, terceros = contar_premios(aciertos, primeros, segundos, terceros)
 
     recaudacion = len(apuestas) * 3000

@@ -1,6 +1,5 @@
-import glob
 from otras_funciones import mostrar_titulo, obtener_todas_las_apuestas
-from funciones_de_listas import partir_cadena, remover_de_lista, ordenar_lista_esteroides
+from funciones_de_listas import ordenar_lista_esteroides
 from grilla import grilla
 
 
