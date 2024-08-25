@@ -30,6 +30,7 @@ def crear_lista_sorteos():
         linea = archivo.readline()
         while linea != "":
             lista = partir_cadena(linea, ",\n", int)
+            lista = orden_parcial(lista, 1, len(lista))
             sorteo = Sorteo(lista[0], lista[1:])
             sorteos.append(sorteo)
             linea = archivo.readline()

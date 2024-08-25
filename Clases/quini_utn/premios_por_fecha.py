@@ -14,7 +14,7 @@ def obtener_numeros_ganadores(fecha, sorteos):
 def obtener_apuestas_del_dia(fecha, historico_apuestas):
     largo = len(historico_apuestas)
     i = 0
-    while i < largo and historico_apuestas[i].fecha != int(fecha):
+    while i < largo and historico_apuestas[i].fecha != fecha:
         i += 1
 
     return historico_apuestas[i].apuestas
@@ -35,7 +35,7 @@ def obtener_datos_del_dia(apuestas, ganadores):
 
     for apuesta in apuestas:
         aciertos = 0
-        for numero in apuesta:
+        for numero in apuesta.numeros:
             aciertos += buscar_en_lista(numero, ganadores)
         primeros, segundos, terceros = contar_premios(aciertos, primeros, segundos, terceros)
 
@@ -58,7 +58,7 @@ def calcular_vacante(importes, primeros, segundos, terceros):
 
 def calcular_premios_fecha(fecha, quini):
     ganadores = obtener_numeros_ganadores(fecha, quini.sorteos)
-    apuestas_del_dia = obtener_apuestas_del_dia(fecha, quini.historico_apuestas)
+    apuestas_del_dia = obtener_apuestas_del_dia(fecha, quini.historial_apuestas)
     primeros, segundos, terceros, recaudacion = obtener_datos_del_dia(apuestas_del_dia, ganadores)
 
     pozo = recaudacion * 0.9
