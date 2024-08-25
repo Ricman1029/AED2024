@@ -4,7 +4,7 @@ from funciones_de_listas import partir_cadena, remover_de_lista, ordenar_lista_2
 from grilla import grilla
 
 
-def crear_lista_apuestas(remover=True):
+def crear_historico_apuestas(remover=True):
     apuestas = []
 
     ubicaciones = glob.glob("datos/apuestas_*.txt")
@@ -22,7 +22,7 @@ def crear_lista_apuestas(remover=True):
 
 def contar_apariciones_numeros():
     control = [(0, 0)] * 46
-    apuestas = crear_lista_apuestas()
+    apuestas = crear_historico_apuestas()
 
     for apuesta in apuestas:
         for i in range(len(apuesta)):

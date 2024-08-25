@@ -1,4 +1,5 @@
 import os
+from carga_de_datos import cargar_datos
 from premios_por_fecha import premios_por_fecha
 from apuestas_premio_fecha import apuestas_por_premio_por_fecha
 from top_numeros_apostados import numeros_mas_apostados, numeros_menos_apostados
@@ -35,13 +36,15 @@ def ejecutar_opcion(opcion):
     if opcion == 5:
         return
 
+    quini_utn = cargar_datos()
+
     funcion = (premios_por_fecha,
                apuestas_por_premio_por_fecha,
                numeros_mas_apostados,
                numeros_menos_apostados,
                buscar_apuesta_por_id)
 
-    funcion[opcion]()
+    funcion[opcion](quini_utn)
 
 
 def principal():

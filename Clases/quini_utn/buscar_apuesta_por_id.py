@@ -1,11 +1,11 @@
 from otras_funciones import mostrar_titulo
-from top_numeros_apostados import crear_lista_apuestas
+from top_numeros_apostados import crear_historico_apuestas
 from funciones_de_listas import buscar_en_lista
 from grilla import grilla
 
 
 def buscar_id(id):
-    apuestas = crear_lista_apuestas(False)
+    apuestas = crear_historico_apuestas(False)
     largo = len(apuestas)
     i = 0
     while i < largo and not buscar_en_lista(id, apuestas[i]):

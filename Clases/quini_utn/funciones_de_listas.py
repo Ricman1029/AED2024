@@ -132,6 +132,15 @@ def ordenar_lista_2_dim(listas, indice, orden="a"):
     return listas1
 
 
+def buscar_indice(valor, lista):
+    largo = len(lista)
+    i = 0
+    while i < largo and lista[i] != valor:
+        i += 1
+
+    return i if i < largo else None
+
+
 if __name__ == '__main__':
     cadena = "1,2,3,4,5,6,7,8,9"
     lista = partir_cadena(cadena, ",\n", int)
