@@ -1,7 +1,6 @@
-from otras_funciones import formato_fecha, mostrar_titulo
-from premios_por_fecha import obtener_numeros_ganadores
+from otras_funciones import formato_fecha, mostrar_titulo, obtener_numeros_ganadores, obtener_apuestas_del_dia
 from funciones_de_listas import (partir_cadena, orden_parcial, buscar_coincidencias,
-                                 ordenar_lista_2_dim, elementos_str_int)
+                                 ordenar_lista_2_dim, elementos_str_int, insertar_en_lista)
 from grilla import grilla
 
 def crear_lista_de_apuestas(archivo):
@@ -21,22 +20,21 @@ def crear_lista_ganadores_por_premio(premio, apuestas, numeros):
     largo = len(numeros)
 
     for apuesta in apuestas:
-        aciertos = buscar_coincidencias(apuesta, numeros, 1, largo)
+        aciertos = buscar_coincidencias(apuesta.numeros, numeros)
         if aciertos == premio:
-            ganadores.append(apuesta)
+            ganador = apuesta.numeros
+            ganador = insertar_en_lista(apuesta.id, ganador)
+            ganadores.append(ganador)
 
     return ganadores
 
 
-def obtener_apuestas_por_premio(fecha, premio):
-    numeros_ganadores = obtener_numeros_ganadores(fecha)
-    numeros_ganadores = orden_parcial(numeros_ganadores, 1, len(numeros_ganadores))
-
-    with open(f"datos/apuestas_{fecha}.txt") as archivo:
-        lista = crear_lista_de_apuestas(archivo)
+def obtener_apuestas_por_premio(fecha, premio, quini):
+    numeros_ganadores = obtener_numeros_ganadores(fecha, quini.sorteos)
+    apuestas = obtener_apuestas_del_dia(fecha, quini.historial_apuestas)
 
     aciertos = 7 - premio
-    lista_de_ganadores = crear_lista_ganadores_por_premio(aciertos, lista, numeros_ganadores)
+    lista_de_ganadores = crear_lista_ganadores_por_premio(aciertos, apuestas, numeros_ganadores)
 
     return lista_de_ganadores
 
@@ -52,13 +50,13 @@ Las apuestas que obtuvieron el premio {premio} para la fecha {fecha} son:
     grilla(columnas, apuestas)
 
 
-def apuestas_por_premio_por_fecha():
+def apuestas_por_premio_por_fecha(quini):
     mostrar_titulo("Resultados por premio por fecha")
 
     fecha = input("Ingresar la fecha del sorteo (YYYYMMDD): ")
     premio = int(input("Ingrese un premio (1, 2 o 3): "))
 
-    ganadores = obtener_apuestas_por_premio(fecha, premio)
+    ganadores = obtener_apuestas_por_premio(fecha, premio, quini)
     ganadores_ordenados = ordenar_lista_2_dim(ganadores, 0)
 
     fecha = formato_fecha(fecha)

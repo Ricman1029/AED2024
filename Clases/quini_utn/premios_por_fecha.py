@@ -1,23 +1,5 @@
-from otras_funciones import formato_fecha, mostrar_titulo
-from funciones_de_listas import buscar_en_lista, convertir_lista_cadena
-
-
-def obtener_numeros_ganadores(fecha, sorteos):
-    largo = len(sorteos)
-    i = 0
-    while i < largo and sorteos[i].fecha != int(fecha):
-        i += 1
-
-    return sorteos[i].numeros
-
-
-def obtener_apuestas_del_dia(fecha, historico_apuestas):
-    largo = len(historico_apuestas)
-    i = 0
-    while i < largo and historico_apuestas[i].fecha != fecha:
-        i += 1
-
-    return historico_apuestas[i].apuestas
+from otras_funciones import formato_fecha, mostrar_titulo, obtener_numeros_ganadores, obtener_apuestas_del_dia
+from funciones_de_listas import buscar_coincidencias, convertir_lista_cadena
 
 
 def contar_premios(aciertos, uno, dos, tres):
@@ -34,9 +16,7 @@ def obtener_datos_del_dia(apuestas, ganadores):
     primeros = segundos = terceros = 0
 
     for apuesta in apuestas:
-        aciertos = 0
-        for numero in apuesta.numeros:
-            aciertos += buscar_en_lista(numero, ganadores)
+        aciertos = buscar_coincidencias(apuesta, ganadores)
         primeros, segundos, terceros = contar_premios(aciertos, primeros, segundos, terceros)
 
     recaudacion = len(apuestas) * 3000

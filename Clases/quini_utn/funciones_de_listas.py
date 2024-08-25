@@ -79,19 +79,11 @@ def ordenar_por_burbuja(lista):
     return lista1
 
 
-def buscar_coincidencias(lista1, lista2, inicio, fin):
+def buscar_coincidencias(lista1, lista2):
     coincidencias = 0
 
-    i = j = inicio
-    while i < fin and j < fin:
-        if lista1[i] == lista2[j]:
-            i += 1
-            j += 1
-            coincidencias += 1
-        elif lista1[i] > lista2[j]:
-            j += 1
-        else:
-            i += 1
+    for elemento in lista1:
+        coincidencias += buscar_en_lista(elemento, lista2)
 
     return coincidencias
 
@@ -139,6 +131,18 @@ def buscar_indice(valor, lista):
         i += 1
 
     return i if i < largo else None
+
+
+def insertar_en_lista(elemento, lista, indice=0):
+    lista_nueva = []
+    for i in range(indice):
+        lista_nueva.append(lista[i])
+    lista_nueva.append(elemento)
+    for i in range(indice, len(lista)):
+        lista_nueva.append(lista[i])
+
+    return lista_nueva
+
 
 
 if __name__ == '__main__':
