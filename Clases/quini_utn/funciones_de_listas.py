@@ -124,6 +124,20 @@ def ordenar_lista_2_dim(listas, indice, orden="a"):
     return listas1
 
 
+def ordenar_lista_esteroides(listas, esta_ordenado):
+    largo = len(listas)
+    i = 0
+    while i < largo:
+        j = i + 1
+        while j < largo:
+            if not esta_ordenado(listas[i], listas[j]):
+                listas[i], listas[j] = listas[j], listas[i]
+            j += 1
+        i += 1
+
+    return listas
+
+
 def buscar_indice(valor, lista):
     largo = len(lista)
     i = 0

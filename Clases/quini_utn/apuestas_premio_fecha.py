@@ -1,6 +1,6 @@
 from otras_funciones import formato_fecha, mostrar_titulo, obtener_numeros_ganadores, obtener_apuestas_del_dia
 from funciones_de_listas import (partir_cadena, orden_parcial, buscar_coincidencias,
-                                 ordenar_lista_2_dim, elementos_str_int, insertar_en_lista)
+                                 ordenar_lista_esteroides, elementos_str_int, insertar_en_lista)
 from grilla import grilla
 
 def crear_lista_de_apuestas(archivo):
@@ -57,7 +57,7 @@ def apuestas_por_premio_por_fecha(quini):
     premio = int(input("Ingrese un premio (1, 2 o 3): "))
 
     ganadores = obtener_apuestas_por_premio(fecha, premio, quini)
-    ganadores_ordenados = ordenar_lista_2_dim(ganadores, 0)
+    ganadores_ordenados = ordenar_lista_esteroides(ganadores, lambda x, y: x < y)
 
     fecha = formato_fecha(fecha)
     mostrar_resultados_por_premio(ganadores_ordenados, premio, fecha)

@@ -1,32 +1,21 @@
 import glob
 from otras_funciones import mostrar_titulo
-from funciones_de_listas import partir_cadena, remover_de_lista, ordenar_lista_2_dim
+from funciones_de_listas import partir_cadena, remover_de_lista, ordenar_lista_esteroides
 from grilla import grilla
 
 
-def crear_historico_apuestas(remover=True):
-    apuestas = []
-
-    ubicaciones = glob.glob("datos/apuestas_*.txt")
-    for ubicacion in ubicaciones:
-        with open(ubicacion) as archivo:
-            linea = archivo.readline()
-            while linea != "":
-                lista = partir_cadena(linea, ",\n", int)
-                lista = remover_de_lista(lista, 0, 0) if remover else lista
-                apuestas.append(lista)
-                linea = archivo.readline()
-
-    return apuestas
+def crear_historico_apuestas():
+    pass
 
 
-def contar_apariciones_numeros():
+def contar_apariciones_numeros(historial_apuestas):
     control = [(0, 0)] * 46
-    apuestas = crear_historico_apuestas()
 
-    for apuesta in apuestas:
-        for i in range(len(apuesta)):
-            control[apuesta[i]] = (apuesta[i], control[apuesta[i]][1] + 1)
+    for dia in historial_apuestas:
+        for apuesta in dia.apuestas:
+            for i in range(len(apuesta.numeros)):
+                apariciones = control[apuesta.numeros[i]][1]
+                control[apuesta.numeros[i]] = (apuesta.numeros[i], apariciones + 1)
 
     return control
 
@@ -49,25 +38,25 @@ Los {cantidad} numeros {cadena} apostados son:
     grilla(columnas, numeros)
 
 
-def numeros_mas_apostados():
+def numeros_mas_apostados(quini):
     mostrar_titulo("Números más apostados")
 
     cantidad = int(input("Ingrese la cantidad de números que desea ver: "))
 
-    aparciciones = contar_apariciones_numeros()
-    apariciones_ordenadas = ordenar_lista_2_dim(aparciciones, 1, "d")
+    aparciciones = contar_apariciones_numeros(quini.historial_apuestas)
+    apariciones_ordenadas = ordenar_lista_esteroides(aparciciones, lambda x, y: x[1] > y[1])
     lista_de_numeros = armar_lista_top_apostados(apariciones_ordenadas, cantidad)
 
     mostrar_top_apostados("mas", lista_de_numeros, cantidad)
 
 
-def numeros_menos_apostados():
+def numeros_menos_apostados(quini):
     mostrar_titulo("Números menos apostados")
 
     cantidad = int(input("Ingrese la cantidad de números que desea ver: "))
 
-    aparciciones = contar_apariciones_numeros()
-    apariciones_ordenadas = ordenar_lista_2_dim(aparciciones, 1, "a")
+    aparciciones = contar_apariciones_numeros(quini.historial_apuestas)
+    apariciones_ordenadas = ordenar_lista_esteroides(aparciciones, lambda x, y: x[1] < y[1])
     lista_de_numeros = armar_lista_top_apostados(apariciones_ordenadas, cantidad)
 
     mostrar_top_apostados("menos", lista_de_numeros, cantidad)
