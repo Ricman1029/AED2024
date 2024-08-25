@@ -1,4 +1,5 @@
 import os
+from funciones_de_listas import insertar_en_lista
 
 
 def limpiar_pantalla():
@@ -32,3 +33,12 @@ def obtener_apuestas_del_dia(fecha, historico_apuestas):
         i += 1
 
     return historico_apuestas[i].apuestas
+
+
+def obtener_todas_las_apuestas(historico_apuestas):
+    apuestas_totales = []
+    for dia in historico_apuestas:
+        for apuesta in dia.apuestas:
+            apuestas_totales.append(apuesta)
+
+    return apuestas_totales

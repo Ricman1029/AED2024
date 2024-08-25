@@ -1,21 +1,17 @@
 import glob
-from otras_funciones import mostrar_titulo
+from otras_funciones import mostrar_titulo, obtener_todas_las_apuestas
 from funciones_de_listas import partir_cadena, remover_de_lista, ordenar_lista_esteroides
 from grilla import grilla
 
 
-def crear_historico_apuestas():
-    pass
-
-
 def contar_apariciones_numeros(historial_apuestas):
     control = [(0, 0)] * 46
+    apuestas = obtener_todas_las_apuestas(historial_apuestas)
 
-    for dia in historial_apuestas:
-        for apuesta in dia.apuestas:
-            for i in range(len(apuesta.numeros)):
-                apariciones = control[apuesta.numeros[i]][1]
-                control[apuesta.numeros[i]] = (apuesta.numeros[i], apariciones + 1)
+    for apuesta in apuestas:
+        for i in range(len(apuesta.numeros)):
+            apariciones = control[apuesta.numeros[i]][1]
+            control[apuesta.numeros[i]] = (apuesta.numeros[i], apariciones + 1)
 
     return control
 

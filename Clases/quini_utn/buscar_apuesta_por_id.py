@@ -1,17 +1,18 @@
-from otras_funciones import mostrar_titulo
-from top_numeros_apostados import crear_historico_apuestas
-from funciones_de_listas import buscar_en_lista
+from otras_funciones import mostrar_titulo, obtener_todas_las_apuestas
+from funciones_de_listas import insertar_en_lista
 from grilla import grilla
 
 
-def buscar_id(id):
-    apuestas = crear_historico_apuestas(False)
+def buscar_id(id, historial_apuestas):
+    apuestas = obtener_todas_las_apuestas(historial_apuestas)
     largo = len(apuestas)
     i = 0
-    while i < largo and not buscar_en_lista(id, apuestas[i]):
+    while i < largo and id != apuestas[i].id:
         i += 1
 
-    return apuestas[i]
+    apuesta = apuestas[i].numeros
+    apuesta = insertar_en_lista(apuestas[i].id, apuesta)
+    return apuesta
 
 
 def mostrar_apuesta_por_id(id, apuesta):
@@ -20,17 +21,17 @@ Apuesta Nro {id}
 """
     print(carta)
 
-    columna = [["ID", 10, "<"], ["NRO1", 5, "<"], ["NRO2", 5, "<"],
-               ["NRO3", 5, "<"], ["NRO4", 5, "<"], ["NRO5", 5, "<"], ["NRO6", 5, "<"]]
+    columna = [["ID", 10, "<"], ["NRO 1", 5, "<"], ["NRO 2", 5, "<"],
+               ["NRO 3", 5, "<"], ["NRO 4", 5, "<"], ["NRO 5", 5, "<"], ["NRO 6", 5, "<"]]
     grilla(columna, [apuesta])
 
 
-def buscar_apuesta_por_id():
+def buscar_apuesta_por_id(quini):
     mostrar_titulo("Buscar apuesta por identificador")
 
     id = int(input("Ingrese el identificador de la apuesta: "))
 
-    apuesta = buscar_id(id)
+    apuesta = buscar_id(id, quini.historial_apuestas)
     mostrar_apuesta_por_id(id, apuesta)
 
 
