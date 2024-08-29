@@ -12,6 +12,7 @@ def crear_lista_ganadores_por_premio(premio, apuestas, numeros):
         aciertos = buscar_coincidencias(apuesta.numeros, numeros)
         if aciertos == premio:
             ganador = apuesta.numeros
+            ganador = ordenar_lista_esteroides(ganador, lambda x, y: x < y)
             ganador = insertar_en_lista(apuesta.id, ganador)
             ganadores.append(ganador)
 

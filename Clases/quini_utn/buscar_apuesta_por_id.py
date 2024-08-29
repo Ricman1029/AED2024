@@ -1,5 +1,5 @@
 from otras_funciones import mostrar_titulo, obtener_todas_las_apuestas
-from funciones_de_listas import insertar_en_lista
+from funciones_de_listas import insertar_en_lista, ordenar_lista_esteroides
 from grilla import grilla
 
 
@@ -11,6 +11,7 @@ def buscar_id(id, historial_apuestas):
         i += 1
 
     apuesta = apuestas[i].numeros
+    apuesta = ordenar_lista_esteroides(apuesta, lambda x, y: x < y)
     apuesta = insertar_en_lista(apuestas[i].id, apuesta)
     return apuesta
 
