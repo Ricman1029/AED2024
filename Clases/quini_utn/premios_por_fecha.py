@@ -1,5 +1,6 @@
 from otras_funciones import formato_fecha, mostrar_titulo, obtener_numeros_ganadores, obtener_apuestas_del_dia
 from funciones_de_listas import buscar_coincidencias, convertir_lista_cadena
+from dominio import QuiniUTN
 
 
 def contar_premios(aciertos, uno, dos, tres):
@@ -77,7 +78,7 @@ VACANTE: ${datos[11]}
     print(carta)
 
 
-def premios_por_fecha(quini):
+def premios_por_fecha(quini: QuiniUTN):
     mostrar_titulo("Premios por fecha")
 
     fecha = input("Ingresar la fecha del sorteo (YYYYMMDD): ")
