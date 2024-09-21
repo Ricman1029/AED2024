@@ -1,5 +1,5 @@
 from logica import generar_tablero, quedan_movimientos, saltar
-from consola import mostrar_tablero
+from consola import mostrar_tablero, preguntar_modo
 
 
 class Contexto:
@@ -23,6 +23,8 @@ class Contexto:
 
 
 def principal():
+    modo_visualizacion = preguntar_modo()
+
     filas = int(input("Filas: "))
     columnas = int(input("Columnas: "))
     tablero = generar_tablero(filas, columnas)
@@ -30,13 +32,15 @@ def principal():
     posicion_actual = input("Indique la posición en la que desea empezar ('fila,columna'): ")
     contexto = Contexto(posicion_actual, 1)
     tablero[contexto.devolver_posicion_actual_en(0)][contexto.devolver_posicion_actual_en(1)] = contexto.movimiento
-    mostrar_tablero(tablero)
+    mostrar_tablero(tablero, contexto.movimiento)
 
     contexto.salto = quedan_movimientos(tablero, contexto.posicion_actual)
     while contexto.salto is not None:
         contexto.movimiento += 1
         contexto.posicion_actual = saltar(tablero, contexto.posicion_actual, contexto.salto, contexto.movimiento)
-        mostrar_tablero(tablero)
+        mostrar_tablero(tablero, contexto.movimiento)
+        if modo_visualizacion == "Manual":
+            input("Presione una tecla para continuar")
         contexto.salto = quedan_movimientos(tablero, contexto.posicion_actual)
 
 
