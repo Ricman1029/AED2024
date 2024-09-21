@@ -55,5 +55,4 @@ def calcular_salto(tablero, posicion_actual):
     disponibilidad_saltos = [None] * 8
     calcular_disponibilidades(tablero, posicion_actual, disponibilidad_saltos)
     menor_diponibilidad = buscar_indice_menor(disponibilidad_saltos)
-    if menor_diponibilidad is not None:
-        return menor_diponibilidad
+    return menor_diponibilidad
