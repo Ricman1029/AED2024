@@ -1,4 +1,4 @@
-from logica import generar_tablero, llenar_tablero
+from logica import generar_tablero, quedan_movimientos, saltar
 from consola import mostrar_tablero
 
 
@@ -7,6 +7,7 @@ class Contexto:
         self.posicion_actual = posicion_actual
         self.movimiento = movimiento
         self.convertir_posicion_actual()
+        self.salto = None
 
     def convertir_posicion_actual(self):
         lista = self.posicion_actual.split(",")
@@ -31,7 +32,9 @@ def principal():
     tablero[contexto.devolver_posicion_actual_en(0)][contexto.devolver_posicion_actual_en(1)] = contexto.movimiento
     mostrar_tablero(tablero)
 
-    while llenar_tablero(tablero, contexto) is not None:
+    while quedan_movimientos(tablero, contexto):
+        contexto.movimiento += 1
+        contexto.posicion_actual = saltar(tablero, contexto.posicion_actual, contexto.salto, contexto.movimiento)
         mostrar_tablero(tablero)
 
 
