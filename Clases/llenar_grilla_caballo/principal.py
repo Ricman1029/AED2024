@@ -32,10 +32,12 @@ def principal():
     tablero[contexto.devolver_posicion_actual_en(0)][contexto.devolver_posicion_actual_en(1)] = contexto.movimiento
     mostrar_tablero(tablero)
 
-    while quedan_movimientos(tablero, contexto):
+    contexto.salto = quedan_movimientos(tablero, contexto.posicion_actual)
+    while contexto.salto is not None:
         contexto.movimiento += 1
         contexto.posicion_actual = saltar(tablero, contexto.posicion_actual, contexto.salto, contexto.movimiento)
         mostrar_tablero(tablero)
+        contexto.salto = quedan_movimientos(tablero, contexto.posicion_actual)
 
 
 if __name__ == '__main__':

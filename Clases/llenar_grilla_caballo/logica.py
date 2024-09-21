@@ -51,11 +51,9 @@ def saltar(tablero, posicion, salto, valor):
     return [fila, columna]
 
 
-def quedan_movimientos(tablero, contexto):
+def quedan_movimientos(tablero, posicion_actual):
     disponibilidad_saltos = [None] * 8
-    posicion_actual = contexto.posicion_actual
     calcular_disponibilidades(tablero, posicion_actual, disponibilidad_saltos)
     menor_diponibilidad = buscar_indice_menor(disponibilidad_saltos)
     if menor_diponibilidad is not None:
-        contexto.salto = menor_diponibilidad
-        return True
+        return menor_diponibilidad
