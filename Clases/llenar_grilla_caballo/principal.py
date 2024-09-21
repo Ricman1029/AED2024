@@ -1,4 +1,4 @@
-from logica import generar_tablero, quedan_movimientos, saltar
+from logica import generar_tablero, calcular_salto, saltar
 from consola import mostrar_tablero, preguntar_modo
 
 
@@ -34,14 +34,14 @@ def principal():
     tablero[contexto.devolver_posicion_actual_en(0)][contexto.devolver_posicion_actual_en(1)] = contexto.movimiento
     mostrar_tablero(tablero, contexto.movimiento)
 
-    contexto.salto = quedan_movimientos(tablero, contexto.posicion_actual)
+    contexto.salto = calcular_salto(tablero, contexto.posicion_actual)
     while contexto.salto is not None:
         contexto.movimiento += 1
         contexto.posicion_actual = saltar(tablero, contexto.posicion_actual, contexto.salto, contexto.movimiento)
         mostrar_tablero(tablero, contexto.movimiento)
         if modo_visualizacion == "Manual":
             input("Presione una tecla para continuar")
-        contexto.salto = quedan_movimientos(tablero, contexto.posicion_actual)
+        contexto.salto = calcular_salto(tablero, contexto.posicion_actual)
 
 
 if __name__ == '__main__':

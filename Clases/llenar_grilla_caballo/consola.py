@@ -7,7 +7,7 @@ def limpiar_pantalla():
 
 def preguntar_modo():
     mensaje = """Modo de visualización automático (1)
-Modo de visuzalización manual. (!= 1)
+Modo de visuzalización manual. (≠1)
 
 Elija una opción: """
     modo = input(mensaje)
