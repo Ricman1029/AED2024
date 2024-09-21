@@ -56,3 +56,10 @@ def calcular_salto(tablero, posicion_actual):
     calcular_disponibilidades(tablero, posicion_actual, disponibilidad_saltos)
     menor_diponibilidad = buscar_indice_menor(disponibilidad_saltos)
     return menor_diponibilidad
+
+
+def convertir_en_lista(cadena):
+    lista = cadena.split(",")
+    for i in range(len(lista)):
+        lista[i] = int(lista[i])
+    return lista

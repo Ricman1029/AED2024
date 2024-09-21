@@ -1,12 +1,5 @@
-from logica import generar_tablero, calcular_salto, saltar
+from logica import generar_tablero, calcular_salto, saltar, convertir_en_lista
 from consola import mostrar_tablero, preguntar_modo
-
-
-def convertir_en_lista(cadena):
-    lista = cadena.split(",")
-    for i in range(len(lista)):
-        lista[i] = int(lista[i])
-    return lista
 
 
 def principal():
