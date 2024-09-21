@@ -38,7 +38,7 @@ def crear_borde(posicion, columnas):
     for i in range(columnas):
         if i > 0:
             borde += union
-        borde += "─────"
+        borde += "───"
     borde += izquierda
     return borde
 
@@ -52,7 +52,7 @@ def pintar_color(color, valor):
     else:
         color = verde
 
-    print(f"{color}{valor:{"^"}{5}}{reset}", end="")
+    print(f"{color}{valor:{"^"}{3}}{reset}", end="")
 
 
 def mostrar_tablero(tablero, ultimo_ingresado):
@@ -74,7 +74,7 @@ def mostrar_tablero(tablero, ultimo_ingresado):
             elif tablero[i][j] == 1:
                 pintar_color("verde", tablero[i][j])
             else:
-                print(f"{tablero[i][j]:{"^"}{5}}", end="")
+                print(f"{tablero[i][j]:{"^"}{3}}", end="")
         print("│")
 
         if i < filas - 1:
