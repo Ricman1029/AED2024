@@ -32,6 +32,7 @@ def partir_cadena(cadena, caracteres, funcion=str):
         else:
             lista.append(funcion(elemento))
             elemento = ""
+    lista.append(funcion(elemento))
     return lista
 
 
